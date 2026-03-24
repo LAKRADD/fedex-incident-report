@@ -279,7 +279,7 @@ async function exportToPdf(wonum?: string) {
   if (!el) return;
   const hidden = el.querySelectorAll<HTMLElement>('.no-print');
   hidden.forEach(e => { e.dataset.pd = e.style.display; e.style.display = 'none'; });
-  await html2pdf().set({
+  await (html2pdf() as any).set({
     margin: [14, 12, 14, 12],
     filename: `WO_${wonum ?? 'rapport'}_incident.pdf`,
     image: { type: 'jpeg', quality: 0.97 },
