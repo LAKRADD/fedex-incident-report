@@ -4,10 +4,15 @@ require('dotenv').config();
 
 const app = express();
 
-/* ── CORS : autorise uniquement votre frontend Vercel ── */
+/* ── CORS complet pour Vercel ── */
 app.use(cors({
   origin: 'https://fedex-incident-report-76s7.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+// Répondre aux preflight OPTIONS envoyés par le navigateur
+app.options('*', cors());
 
 app.use(express.json());
 
